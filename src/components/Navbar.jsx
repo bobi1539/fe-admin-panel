@@ -12,7 +12,10 @@ import { setMode } from 'state';
 import profileImage from "assets/profile.png";
 import { AppBar, IconButton, InputBase, Toolbar, useTheme } from '@mui/material';
 
-function Navbar() {
+const Navbar = ({
+    isSidebarOpen,
+    setIsSidebarOpen
+}) => {
     const dispatch = useDispatch();
     const theme = useTheme();
     return (
@@ -25,7 +28,7 @@ function Navbar() {
             <Toolbar sx={{ justifyContent: "space-between" }}>
                 {/* LEFT SIDE */}
                 <FlexBetween>
-                    <IconButton onClick={() => console.log("open/close sidebar")} >
+                    <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)} >
                         <MenuIcon />
                     </IconButton>
                     <FlexBetween
@@ -45,13 +48,13 @@ function Navbar() {
                 <FlexBetween gap="1.5rem">
                     <IconButton onClick={() => dispatch(setMode())}>
                         {theme.palette.mode === "dark" ? (
-                            <DarkModeOutlined sx={{ fontSize: "25px" }}/>
+                            <DarkModeOutlined sx={{ fontSize: "25px" }} />
                         ) : (
-                            <LightModeOutlined sx={{fontSize: "25px"}} />
+                            <LightModeOutlined sx={{ fontSize: "25px" }} />
                         )}
                     </IconButton>
                     <IconButton>
-                        <SettingsOutlined fontSize="25px"/>
+                        <SettingsOutlined fontSize="25px" />
                     </IconButton>
                 </FlexBetween>
             </Toolbar>
